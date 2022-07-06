@@ -1,0 +1,54 @@
+#-----DETAILS-----
+
+#Given an n x n array, return the array elements arranged from outermost elements to the middle element, traveling clockwise.
+
+#array = [[1,2,3],
+#         [4,5,6],
+#         [7,8,9]]
+#snail(array) #=> [1,2,3,6,9,8,7,4,5]
+#For better understanding, please follow the numbers of the next array consecutively:
+
+#array = [[1,2,3],
+#         [8,9,4],
+#         [7,6,5]]
+#snail(array) #=> [1,2,3,4,5,6,7,8,9]
+
+
+
+#-----SOLUTION------
+
+def snail(snail_map):
+    return_list = []
+
+    
+    while len(snail_map) != 0:
+        
+        #for the 1st run in the first row, left to right
+        return_list.extend(snail_map[0])
+        #removing the added elements
+        snail_map.remove(snail_map[0])
+        
+        if len(snail_map) == 0:
+            break
+            
+        #for the 2nd run in the rightmost column, top to bottom
+        for row in snail_map:
+            return_list.append(row[-1])
+            #removing the added element
+            row.pop() 
+        
+        
+        #for the 3rd run in the bottom row, right to left
+        return_list.extend(reversed((snail_map[-1])))
+        #removing the added elements
+        snail_map.pop()
+        
+            
+        #for the 4th run in the leftmost column, bottom to top
+        for row in reversed(snail_map):
+            return_list.append(row[0])
+            #removing the added element
+            row.pop(0)  
+        
+        
+    return return_list
