@@ -51,4 +51,5 @@ def snail(snail_map):
             row.pop(0)  
         
         
+        
     return return_list
